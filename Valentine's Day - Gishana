@@ -1,0 +1,1430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BlueLove - A romantic Valentine's Day animated web app for expressing love">
+    <meta name="theme-color" content="#0066cc">
+    <title>Gishana - Valentine's Wish</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <!-- External Stylesheet -->
+    <style>
+        /* ============================================
+   BlueLove - Valentine's Day App
+   Complete Responsive CSS
+   ============================================ */
+
+/* ROOT VARIABLES */
+:root {
+    --primary-blue: #0066cc;
+    --primary-blue-dark: #001a4d;
+    --primary-blue-light: #00ccff;
+    --accent-pink: #ff1493;
+    --accent-white: #ffffff;
+    --accent-light: #e6f3ff;
+    
+    /* Animation durations */
+    --duration-short: 0.8s;
+    --duration-normal: 1.5s;
+    --duration-long: 2s;
+    
+    /* Base spacing */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 3rem;
+}
+
+/* ============================================
+   RESET & BASE STYLES
+   ============================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, var(--primary-blue-dark) 0%, var(--primary-blue) 50%, var(--primary-blue-light) 100%);
+    color: var(--accent-white);
+    overflow: hidden;
+    touch-action: manipulation;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* ============================================
+   TYPOGRAPHY
+   ============================================ */
+
+/* BREAKPOINT: Small Phones (≤359px) */
+@media (max-width: 359px) {
+    html, body {
+        font-size: 14px;
+    }
+}
+
+/* BREAKPOINT: Standard Phones (360px–480px) */
+@media (min-width: 360px) and (max-width: 480px) {
+    html, body {
+        font-size: 16px;
+    }
+}
+
+/* BREAKPOINT: Large Phones (481px–767px) */
+@media (min-width: 481px) and (max-width: 767px) {
+    html, body {
+        font-size: 18px;
+    }
+}
+
+/* BREAKPOINT: Tablets (768px–1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+    html, body {
+        font-size: 20px;
+    }
+}
+
+/* BREAKPOINT: Large Tablets (≥1025px) */
+@media (min-width: 1025px) {
+    html, body {
+        font-size: 24px;
+    }
+}
+
+/* ============================================
+   CONTAINER & LAYOUT
+   ============================================ */
+
+.container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.page {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: var(--spacing-lg) var(--spacing-md);
+    z-index: 10;
+}
+
+.page-active {
+    opacity: 1;
+    pointer-events: auto;
+    z-index: 20;
+}
+
+.page-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-lg);
+    max-width: 90vw;
+    width: 100%;
+}
+
+/* ============================================
+   TEXT STYLES
+   ============================================ */
+
+.page-text {
+    font-size: 2rem;
+    font-weight: 500;
+    line-height: 1.6;
+    letter-spacing: 0.5px;
+    margin: 0;
+    animation: fadeInUp 1.5s ease-out;
+}
+
+.page-text strong {
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--accent-pink), #ff69b4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.page-text br {
+    content: "";
+    display: block;
+}
+
+/* BREAKPOINT ADJUSTMENTS FOR TEXT */
+@media (max-width: 359px) {
+    .page-text {
+        font-size: 1.2rem;
+        line-height: 1.5;
+        gap: 0.5rem;
+    }
+}
+
+@media (min-width: 360px) and (max-width: 480px) {
+    .page-text {
+        font-size: 1.3rem;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+    .page-text {
+        font-size: 1.6rem;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .page-text {
+        font-size: 2rem;
+    }
+}
+
+@media (min-width: 1025px) {
+    .page-text {
+        font-size: 2.5rem;
+    }
+}
+
+/* Final page text styling */
+.page-text-final {
+    font-size: 3rem;
+    animation: scaleGlow 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@media (max-width: 359px) {
+    .page-text-final {
+        font-size: 1.8rem;
+    }
+}
+
+@media (min-width: 360px) and (max-width: 480px) {
+    .page-text-final {
+        font-size: 2rem;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+    .page-text-final {
+        font-size: 2.5rem;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .page-text-final {
+        font-size: 3rem;
+    }
+}
+
+@media (min-width: 1025px) {
+    .page-text-final {
+        font-size: 3.5rem;
+    }
+}
+
+/* ============================================
+   HEART STYLES & ANIMATIONS
+   ============================================ */
+
+.heart {
+    width: 4rem;
+    height: 4rem;
+    fill: var(--accent-pink);
+    filter: drop-shadow(0 0 10px rgba(255, 20, 147, 0.6));
+    will-change: transform;
+    transition: all 0.3s ease;
+}
+
+/* BREAKPOINT ADJUSTMENTS FOR HEARTS */
+@media (max-width: 359px) {
+    .heart {
+        width: 2rem;
+        height: 2rem;
+        filter: drop-shadow(0 0 5px rgba(255, 20, 147, 0.4));
+    }
+}
+
+@media (min-width: 360px) and (max-width: 480px) {
+    .heart {
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+    .heart {
+        width: 3rem;
+        height: 3rem;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .heart {
+        width: 3.5rem;
+        height: 3.5rem;
+    }
+}
+
+@media (min-width: 1025px) {
+    .heart {
+        width: 5rem;
+        height: 5rem;
+        filter: drop-shadow(0 0 15px rgba(255, 20, 147, 0.7));
+    }
+}
+
+/* Large heart for final page */
+.heart-explode {
+    width: 8rem;
+    height: 8rem;
+    animation: explode 1.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@media (max-width: 359px) {
+    .heart-explode {
+        width: 4rem;
+        height: 4rem;
+    }
+}
+
+@media (min-width: 360px) and (max-width: 480px) {
+    .heart-explode {
+        width: 5rem;
+        height: 5rem;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+    .heart-explode {
+        width: 6rem;
+        height: 6rem;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .heart-explode {
+        width: 7rem;
+        height: 7rem;
+    }
+}
+
+/* Individual heart animations */
+
+.heart-main {
+    animation: float 3s ease-in-out infinite;
+}
+
+.heart-pulse {
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+.heart-zoom {
+    animation: zoomIn 2s ease-out forwards;
+}
+
+.heart-merge {
+    animation: merge 2s ease-in-out infinite;
+}
+
+.heart-beat {
+    animation: beat 0.8s ease-in-out infinite;
+}
+
+.heart-gather {
+    animation: gather 2s ease-out infinite;
+    transform-origin: center;
+}
+
+.heart-gather-2 {
+    animation-delay: 0.2s;
+}
+
+.heart-gather-3 {
+    animation-delay: 0.4s;
+}
+
+/* ============================================
+   EMOJI & GROUPS
+   ============================================ */
+
+.emoji-container {
+    margin-top: 1rem;
+    font-size: 2.5rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.floating-emoji {
+    animation: floatingEmoji 3s ease-in-out infinite;
+    display: inline-block;
+}
+
+.floating-emoji:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.floating-emoji:nth-child(2) {
+    animation-delay: 0.5s;
+}
+
+.floating-emoji:nth-child(3) {
+    animation-delay: 1s;
+}
+
+@media (max-width: 359px) {
+    .emoji-container {
+        font-size: 1.8rem;
+        gap: 0.8rem;
+    }
+}
+
+@media (min-width: 1025px) {
+    .emoji-container {
+        font-size: 3.5rem;
+        gap: 1.5rem;
+    }
+}
+
+.hearts-group {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width: 359px) {
+    .hearts-group {
+        gap: 1rem;
+    }
+}
+
+@media (min-width: 1025px) {
+    .hearts-group {
+        gap: 2rem;
+    }
+}
+
+/* ============================================
+   FLOATING HEARTS BACKGROUND
+   ============================================ */
+
+.floating-hearts {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.float-heart {
+    position: absolute;
+    width: 2rem;
+    height: 2rem;
+    fill: rgba(255, 255, 255, 0.3);
+    animation: floatUp 10s infinite ease-in;
+    will-change: transform;
+}
+
+@media (max-width: 359px) {
+    .float-heart {
+        width: 1rem;
+        height: 1rem;
+        opacity: 0.2;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+    .float-heart {
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+}
+
+@media (min-width: 1025px) {
+    .float-heart {
+        width: 3rem;
+        height: 3rem;
+    }
+}
+
+.small-scattered-heart {
+    position: absolute;
+    fill: var(--accent-pink);
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* ============================================
+   NAVIGATION
+   ============================================ */
+
+.nav-container {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    z-index: 100;
+    width: 100%;
+    max-width: 100vw;
+    padding: 0 1rem;
+}
+
+.btn {
+    background: var(--accent-pink);
+    color: var(--accent-white);
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: 'Poppins', inherit;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 20px rgba(255, 20, 147, 0.4);
+    will-change: transform;
+    min-height: 44px;
+    min-width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn:active {
+    transform: scale(0.95);
+}
+
+.btn:hover:not(:disabled) {
+    background: #ff0080;
+    box-shadow: 0 6px 25px rgba(255, 20, 147, 0.6);
+    transform: translateY(-2px);
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* BREAKPOINT ADJUSTMENTS FOR BUTTONS */
+@media (max-width: 359px) {
+    .nav-container {
+        bottom: 0.8rem;
+        gap: 0.4rem;
+        padding: 0 0.5rem;
+    }
+
+    .btn {
+        padding: 0.6rem 0.8rem;
+        font-size: 0.8rem;
+        min-height: 40px;
+        min-width: 75px;
+        flex: 1;
+        max-width: 110px;
+    }
+}
+
+@media (min-width: 360px) and (max-width: 480px) {
+    .nav-container {
+        bottom: 1.2rem;
+        gap: 0.6rem;
+    }
+
+    .btn {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+    .nav-container {
+        bottom: 1.5rem;
+        gap: 0.8rem;
+    }
+
+    .btn {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .nav-container {
+        bottom: 2rem;
+        gap: 1rem;
+    }
+
+    .btn {
+        padding: 0.9rem 1.8rem;
+        font-size: 1.1rem;
+        min-width: 120px;
+    }
+}
+
+@media (min-width: 1025px) {
+    .nav-container {
+        bottom: 2.5rem;
+        gap: 1.2rem;
+    }
+
+    .btn {
+        padding: 1rem 2rem;
+        font-size: 1.2rem;
+        min-width: 140px;
+    }
+}
+
+/* ============================================
+   PAGE INDICATOR
+   ============================================ */
+
+.page-indicator {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(255, 20, 147, 0.25);
+    backdrop-filter: blur(10px);
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    z-index: 100;
+    border: 1px solid rgba(255, 20, 147, 0.3);
+}
+
+@media (max-width: 359px) {
+    .page-indicator {
+        top: 0.8rem;
+        right: 0.8rem;
+        font-size: 0.75rem;
+        padding: 0.4rem 0.8rem;
+    }
+}
+
+@media (min-width: 1025px) {
+    .page-indicator {
+        top: 1.5rem;
+        right: 1.5rem;
+        font-size: 1rem;
+        padding: 0.6rem 1.2rem;
+    }
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+}
+
+@keyframes zoomIn {
+    from {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes merge {
+    0%, 100% {
+        transform: translateX(-30px);
+    }
+    50% {
+        transform: translateX(0) scale(1.15);
+        filter: drop-shadow(0 0 20px rgba(255, 20, 147, 0.8));
+    }
+}
+
+@keyframes beat {
+    0% {
+        transform: scale(1);
+    }
+    25% {
+        transform: scale(1.25);
+    }
+    50% {
+        transform: scale(1);
+    }
+    75% {
+        transform: scale(1.15);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes gather {
+    0% {
+        opacity: 0.5;
+        transform: translateY(20px);
+    }
+    50% {
+        filter: drop-shadow(0 0 20px rgba(255, 20, 147, 0.7));
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes floatingEmoji {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+}
+
+@keyframes floatUp {
+    0% {
+        opacity: 0;
+        transform: translateY(100vh) rotateZ(0deg);
+    }
+    10% {
+        opacity: 0.6;
+    }
+    90% {
+        opacity: 0.6;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-100vh) rotateZ(360deg);
+    }
+}
+
+@keyframes explode {
+    0% {
+        opacity: 0;
+        transform: scale(0) rotateZ(0deg);
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) rotateZ(360deg);
+        filter: drop-shadow(0 0 40px rgba(255, 20, 147, 0.9));
+    }
+}
+
+@keyframes scaleGlow {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+        filter: blur(5px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+        filter: blur(0) drop-shadow(0 0 30px rgba(255, 20, 147, 0.8));
+    }
+}
+
+@keyframes scatter {
+    0% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(var(--tx), var(--ty)) scale(0);
+    }
+}
+
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ============================================
+   RESPONSIVE PADDING & SPACING
+   ============================================ */
+
+@media (max-width: 359px) {
+    .page {
+        padding: 1rem 0.8rem;
+    }
+
+    .page-content {
+        gap: 1rem;
+        max-width: 98vw;
+    }
+}
+
+@media (min-width: 360px) and (max-width: 480px) {
+    .page {
+        padding: 1.5rem 1rem;
+    }
+
+    .page-content {
+        gap: 1.2rem;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+    .page {
+        padding: 2rem 1.5rem;
+    }
+
+    .page-content {
+        gap: 1.5rem;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .page {
+        padding: 2.5rem 2rem;
+    }
+
+    .page-content {
+        gap: 2rem;
+    }
+}
+
+@media (min-width: 1025px) {
+    .page {
+        padding: 3rem 2.5rem;
+    }
+
+    .page-content {
+        gap: 2.5rem;
+    }
+}
+
+/* ============================================
+   LOW GPU OPTIMIZATION
+   ============================================ */
+
+@media (max-width: 500px) {
+    .float-heart {
+        animation: floatUpSimple 10s infinite linear;
+    }
+
+    @keyframes floatUpSimple {
+        0% {
+            transform: translateY(100vh);
+            opacity: 0;
+        }
+        10% {
+            opacity: 0.5;
+        }
+        90% {
+            opacity: 0.5;
+        }
+        100% {
+            transform: translateY(-100vh);
+            opacity: 0;
+        }
+    }
+
+    .heart {
+        filter: drop-shadow(0 0 6px rgba(255, 20, 147, 0.4));
+    }
+
+    .heart-explode {
+        filter: drop-shadow(0 0 20px rgba(255, 20, 147, 0.7));
+    }
+}
+
+@media (max-width: 360px) {
+    .float-heart {
+        opacity: 0.2 !important;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <!-- SVG Heart Symbol Definition -->
+    <svg style="display: none;">
+        <defs>
+            <symbol id="heart" viewBox="0 0 100 100">
+                <path d="M50,95 C25,80 5,65 5,45 C5,30 15,20 25,20 C35,20 45,30 50,40 C55,30 65,20 75,20 C85,20 95,30 95,45 C95,65 75,80 50,95 Z" fill="currentColor"/>
+            </symbol>
+        </defs>
+    </svg>
+
+    <!-- Floating Hearts Background Container -->
+    <div class="floating-hearts" id="floatingHearts"></div>
+
+    <!-- Main Container -->
+    <div class="container">
+        
+        <!-- Page 1: Welcome Love -->
+        <div class="page page-active">
+            <div class="page-content">
+                <h1 class="page-text">
+                    Hey <strong>Gishana</strong>… I made something <br><strong>special for you</strong> 💙
+                </h1>
+                <svg class="heart heart-main" viewBox="0 0 100 100">
+                    <use href="#heart"/>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Page 2: Emotional Bond -->
+        <div class="page">
+            <div class="page-content">
+                <h1 class="page-text">
+                    <strong>Gishana</strong>, you are the reason my <br><strong>days feel brighter</strong> ✨
+                </h1>
+                <svg class="heart heart-pulse" viewBox="0 0 100 100">
+                    <use href="#heart"/>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Page 3: Memories -->
+        <div class="page">
+            <div class="page-content">
+                <h1 class="page-text">
+                    Every moment with you is my <br><strong>favorite memory</strong> 🌟
+                </h1>
+                <svg class="heart heart-zoom" viewBox="0 0 100 100">
+                    <use href="#heart"/>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Page 4: Promise -->
+        <div class="page">
+            <div class="page-content">
+                <h1 class="page-text">
+                    I promise to stand by you <br><strong>always</strong> 💕
+                </h1>
+                <svg class="heart heart-merge" viewBox="0 0 100 100">
+                    <use href="#heart"/>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Page 5: Feeling -->
+        <div class="page">
+            <div class="page-content">
+                <h1 class="page-text">
+                    My heart beats only for <br><strong>you, Gishana</strong> 💓
+                </h1>
+                <svg class="heart heart-beat" viewBox="0 0 100 100">
+                    <use href="#heart"/>
+                </svg>
+                <div class="emoji-container">
+                    <span class="floating-emoji">💙</span>
+                    <span class="floating-emoji">💖</span>
+                    <span class="floating-emoji">💙</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page 6: Build-Up -->
+        <div class="page">
+            <div class="page-content">
+                <h1 class="page-text">
+                    There is something I want to <br><strong>tell you…</strong> 🎀
+                </h1>
+                <div class="hearts-group">
+                    <svg class="heart heart-gather" viewBox="0 0 100 100">
+                        <use href="#heart"/>
+                    </svg>
+                    <svg class="heart heart-gather heart-gather-2" viewBox="0 0 100 100">
+                        <use href="#heart"/>
+                    </svg>
+                    <svg class="heart heart-gather heart-gather-3" viewBox="0 0 100 100">
+                        <use href="#heart"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page 7: Final Reveal -->
+        <div class="page">
+            <div class="page-content">
+                <svg class="heart heart-explode" viewBox="0 0 100 100">
+                    <use href="#heart"/>
+                </svg>
+                <h1 class="page-text page-text-final">
+                    <strong>I LOVE YOU,<br>Gishana</strong> ❤️
+                </h1>
+                <div id="scattered-hearts-container"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Page Indicator -->
+    <div class="page-indicator">
+        <span id="current-page">1</span> / 7
+    </div>
+
+    <!-- Navigation Buttons -->
+    <div class="nav-container">
+        <button id="btn-prev" class="btn btn-prev" disabled>← Back</button>
+        <button id="btn-next" class="btn btn-next">Next →</button>
+    </div>
+
+    <!-- External JavaScript -->
+    <script src="script.js"></script>
+</body>
+<script>
+    /* ============================================
+   BlueLove - Valentine's App
+   Main JavaScript Controller
+   ============================================ */
+
+// ============================================
+// STATE MANAGEMENT
+// ============================================
+
+const APP_STATE = {
+    currentPage: 0,
+    totalPages: 7,
+    touchStartX: 0,
+    touchEndX: 0,
+    isAnimating: false,
+};
+
+// ============================================
+// DOM ELEMENTS
+// ============================================
+
+const pages = document.querySelectorAll('.page');
+const btnNext = document.getElementById('btn-next');
+const btnPrev = document.getElementById('btn-prev');
+const currentPageDisplay = document.getElementById('current-page');
+const floatingHeartsContainer = document.getElementById('floatingHearts');
+const container = document.querySelector('.container');
+
+// ============================================
+// INITIALIZATION
+// ============================================
+
+function initialize() {
+    createFloatingHearts();
+    attachEventListeners();
+    updatePageDisplay();
+    showPage(0);
+}
+
+// ============================================
+// PAGE NAVIGATION
+// ============================================
+
+/**
+ * Display specific page with animation
+ * @param {number} pageIndex - Index of page to display (0-6)
+ */
+function showPage(pageIndex) {
+    if (APP_STATE.isAnimating) return;
+    
+    APP_STATE.isAnimating = true;
+    
+    // Deactivate all pages
+    pages.forEach(page => page.classList.remove('page-active'));
+    
+    // Activate target page
+    pages[pageIndex].classList.add('page-active');
+    
+    // Update state
+    APP_STATE.currentPage = pageIndex;
+    
+    // Create scattered hearts on final page
+    if (pageIndex === APP_STATE.totalPages - 1) {
+        createScatteredHearts();
+        
+        // Vibrate on mobile (if supported)
+        if (navigator.vibrate) {
+            navigator.vibrate([50, 30, 50, 30, 100]);
+        }
+    }
+    
+    // Update UI
+    updatePageDisplay();
+    updateButtonStates();
+    
+    // Unlock animation state after transition
+    setTimeout(() => {
+        APP_STATE.isAnimating = false;
+    }, 800);
+}
+
+/**
+ * Move to next page
+ */
+function nextPage() {
+    if (APP_STATE.currentPage < APP_STATE.totalPages - 1) {
+        showPage(APP_STATE.currentPage + 1);
+    }
+}
+
+/**
+ * Move to previous page
+ */
+function previousPage() {
+    if (APP_STATE.currentPage > 0) {
+        showPage(APP_STATE.currentPage - 1);
+    }
+}
+
+// ============================================
+// UI UPDATES
+// ============================================
+
+/**
+ * Update page indicator display
+ */
+function updatePageDisplay() {
+    currentPageDisplay.textContent = APP_STATE.currentPage + 1;
+}
+
+/**
+ * Update button disabled states
+ */
+function updateButtonStates() {
+    const isFirstPage = APP_STATE.currentPage === 0;
+    const isLastPage = APP_STATE.currentPage === APP_STATE.totalPages - 1;
+    
+    btnPrev.disabled = isFirstPage;
+    btnNext.disabled = isLastPage;
+}
+
+// ============================================
+// HEART ANIMATIONS
+// ============================================
+
+/**
+ * Create background floating hearts with responsive count
+ */
+function createFloatingHearts() {
+    let heartCount;
+    let animationInterval;
+    
+    // Adaptive heart count based on device breakpoints
+    if (window.innerWidth <= 359) {
+        heartCount = 4;       // Small phones
+        animationInterval = 5000;
+    } else if (window.innerWidth >= 360 && window.innerWidth <= 480) {
+        heartCount = 8;       // Standard phones
+        animationInterval = 4000;
+    } else if (window.innerWidth >= 481 && window.innerWidth <= 767) {
+        heartCount = 10;      // Large phones
+        animationInterval = 3500;
+    } else if (window.innerWidth >= 768 && window.innerWidth <= 1024) {
+        heartCount = 12;      // Tablets
+        animationInterval = 3000;
+    } else {
+        heartCount = 15;      // Large tablets
+        animationInterval = 3000;
+    }
+    
+    // Create initial batch of hearts
+    for (let i = 0; i < heartCount; i++) {
+        createSingleFloatingHeart();
+    }
+    
+    // Periodically create new hearts
+    setTimeout(createFloatingHearts, animationInterval);
+}
+
+/**
+ * Create a single floating heart with SVG
+ */
+function createSingleFloatingHeart() {
+    const heart = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    heart.setAttribute('class', 'float-heart');
+    heart.setAttribute('viewBox', '0 0 100 100');
+    
+    // Randomize position and animation timing
+    const startX = Math.random() * window.innerWidth;
+    const startY = window.innerHeight + 20;
+    const duration = 8 + Math.random() * 6;
+    const delay = Math.random() * 3;
+    
+    heart.style.left = startX + 'px';
+    heart.style.top = startY + 'px';
+    heart.style.animationDuration = duration + 's';
+    heart.style.animationDelay = delay + 's';
+    
+    // Add heart symbol
+    const use = document.createElementNS('http://www.w3.org/2000/svg', 'use');
+    use.setAttributeNS('http://www.w3.org/1999/xlink', 'href', '#heart');
+    heart.appendChild(use);
+    
+    floatingHeartsContainer.appendChild(heart);
+    
+    // Remove heart after animation completes
+    const removeTime = (duration + delay + 2) * 1000;
+    setTimeout(() => {
+        if (heart.parentNode) {
+            heart.parentNode.removeChild(heart);
+        }
+    }, removeTime);
+}
+
+/**
+ * Create scattered hearts for final page
+ */
+function createScatteredHearts() {
+    const container = document.getElementById('scattered-hearts-container');
+    container.innerHTML = ''; // Clear previous hearts
+    
+    let heartCount;
+    let distance;
+    
+    // Responsive configuration per breakpoint
+    if (window.innerWidth <= 359) {
+        heartCount = 6;
+        distance = 80;
+    } else if (window.innerWidth >= 360 && window.innerWidth <= 480) {
+        heartCount = 8;
+        distance = 100;
+    } else if (window.innerWidth >= 481 && window.innerWidth <= 767) {
+        heartCount = 10;
+        distance = 130;
+    } else if (window.innerWidth >= 768 && window.innerWidth <= 1024) {
+        heartCount = 12;
+        distance = 160;
+    } else {
+        heartCount = 15;
+        distance: 200;
+    }
+    
+    // Create scattered hearts in circular pattern
+    for (let i = 0; i < heartCount; i++) {
+        const heart = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        heart.setAttribute('class', 'small-scattered-heart');
+        heart.setAttribute('viewBox', '0 0 100 100');
+        
+        // Calculate position on circle
+        const angle = (i / heartCount) * Math.PI * 2;
+        const tx = Math.cos(angle) * distance;
+        const ty = Math.sin(angle) * distance;
+        
+        // Set custom properties for animation
+        heart.style.setProperty('--tx', `${tx}px`);
+        heart.style.setProperty('--ty', `${ty}px`);
+        heart.style.width = getHeartSize() + 'px';
+        heart.style.height = getHeartSize() + 'px';
+        heart.style.animation = `scatter 1.5s ease-out forwards`;
+        
+        // Add heart symbol
+        const use = document.createElementNS('http://www.w3.org/2000/svg', 'use');
+        use.setAttributeNS('http://www.w3.org/1999/xlink', 'href', '#heart');
+        heart.appendChild(use);
+        
+        container.appendChild(heart);
+    }
+}
+
+/**
+ * Get responsive heart size for scattered hearts
+ * @returns {number} Heart size in pixels
+ */
+function getHeartSize() {
+    if (window.innerWidth <= 359) return 12;
+    if (window.innerWidth >= 360 && window.innerWidth <= 480) return 14;
+    if (window.innerWidth >= 481 && window.innerWidth <= 767) return 16;
+    if (window.innerWidth >= 768 && window.innerWidth <= 1024) return 18;
+    return 20;
+}
+
+// ============================================
+// EVENT LISTENERS
+// ============================================
+
+/**
+ * Attach all event listeners
+ */
+function attachEventListeners() {
+    // Button clicks
+    btnNext.addEventListener('click', nextPage);
+    btnPrev.addEventListener('click', previousPage);
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', handleKeyboardNavigation);
+    
+    // Touch swipe navigation
+    document.addEventListener('touchstart', handleTouchStart, false);
+    document.addEventListener('touchend', handleTouchEnd, false);
+    
+    // Keyboard arrow keys support
+    document.addEventListener('keydown', (e) => {
+        if (e.key === ' ' || e.key === 'Enter') {
+            e.preventDefault();
+            nextPage();
+        }
+    });
+}
+
+/**
+ * Handle keyboard navigation
+ * @param {KeyboardEvent} event - Keyboard event
+ */
+function handleKeyboardNavigation(event) {
+    if (event.key === 'ArrowRight' || event.key === ' ') {
+        event.preventDefault();
+        nextPage();
+    }
+    if (event.key === 'ArrowLeft') {
+        event.preventDefault();
+        previousPage();
+    }
+}
+
+/**
+ * Handle touch start
+ * @param {TouchEvent} event - Touch event
+ */
+function handleTouchStart(event) {
+    APP_STATE.touchStartX = event.changedTouches[0].screenX;
+}
+
+/**
+ * Handle touch end (swipe detection)
+ * @param {TouchEvent} event - Touch event
+ */
+function handleTouchEnd(event) {
+    APP_STATE.touchEndX = event.changedTouches[0].screenX;
+    detectSwipe();
+}
+
+/**
+ * Detect swipe direction and navigate
+ */
+function detectSwipe() {
+    const swipeThreshold = 50; // Minimum swipe distance
+    const difference = APP_STATE.touchStartX - APP_STATE.touchEndX;
+    
+    // Swiped left - next page
+    if (difference > swipeThreshold) {
+        nextPage();
+    }
+    
+    // Swiped right - previous page
+    if (difference < -swipeThreshold) {
+        previousPage();
+    }
+}
+
+// ============================================
+// RESPONSIVE UPDATES
+// ============================================
+
+/**
+ * Handle window resize for responsive updates
+ */
+window.addEventListener('resize', () => {
+    // Could be used for responsive adjustments
+    // Currently handled via CSS media queries
+});
+
+// ============================================
+// PERFORMANCE OPTIMIZATION
+// ============================================
+
+// Use requestAnimationFrame for smooth animations
+if (!window.requestAnimationFrame) {
+    window.requestAnimationFrame = (callback) => {
+        return setTimeout(callback, 1000 / 60);
+    };
+}
+
+// Use cancelAnimationFrame fallback
+if (!window.cancelAnimationFrame) {
+    window.cancelAnimationFrame = (id) => {
+        clearTimeout(id);
+    };
+}
+
+// ============================================
+// START APP
+// ============================================
+
+// Initialize app when DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initialize);
+} else {
+    initialize();
+}
+
+// ============================================
+// DEBUGGING (Optional)
+// ============================================
+
+// Uncomment to see state in console
+// setInterval(() => {
+//     console.log('Current Page:', APP_STATE.currentPage + 1);
+// }, 5000);
+
+</script>
+</html>
