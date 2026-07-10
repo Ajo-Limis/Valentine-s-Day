@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="BlueLove - A romantic Valentine's Day animated web app for expressing love">
     <meta name="theme-color" content="#0066cc">
-    <title>Gishana - Valentine's Wish</title>
+    <title>Divya - Valentine's Wish</title>
     
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
@@ -926,7 +926,7 @@ html, body {
         <div class="page page-active">
             <div class="page-content">
                 <h1 class="page-text">
-                    Hey <strong>Gishana</strong>… I made something <br><strong>special for you</strong> 💙
+                    Hey <strong>Divya</strong>… I made something <br><strong>special for you</strong> 💙
                 </h1>
                 <svg class="heart heart-main" viewBox="0 0 100 100">
                     <use href="#heart"/>
@@ -938,7 +938,7 @@ html, body {
         <div class="page">
             <div class="page-content">
                 <h1 class="page-text">
-                    <strong>Gishana</strong>, you are the reason my <br><strong>days feel brighter</strong> ✨
+                    <strong>Divya</strong>, you are the reason my <br><strong>days feel brighter</strong> ✨
                 </h1>
                 <svg class="heart heart-pulse" viewBox="0 0 100 100">
                     <use href="#heart"/>
@@ -974,7 +974,7 @@ html, body {
         <div class="page">
             <div class="page-content">
                 <h1 class="page-text">
-                    My heart beats only for <br><strong>you, Gishana</strong> 💓
+                    My heart beats only for <br><strong>you, Divya</strong> 💓
                 </h1>
                 <svg class="heart heart-beat" viewBox="0 0 100 100">
                     <use href="#heart"/>
@@ -1014,7 +1014,7 @@ html, body {
                     <use href="#heart"/>
                 </svg>
                 <h1 class="page-text page-text-final">
-                    <strong>I LOVE YOU,<br>Gishana</strong> ❤️
+                    <strong>I LOVE YOU,<br>GDivya</strong> ❤️
                 </h1>
                 <div id="scattered-hearts-container"></div>
             </div>
